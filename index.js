@@ -1,9 +1,20 @@
-const textArea = document.querySelector(".text-area");
-const mensaje = document.querySelector(".mensaje");
+const textArea = document.querySelector(".texto1");
+const mensaje = document.querySelector(".cuadroDeResultado");
+const textodos = document.getElementById("texto2");
+const textotres = document.getElementById("texto3");
 
-//const boton = document.querySelector(".boton");
+//Comienza funcion de Limpiar cuadro de ingreso de texto
+
+function limpiar(){
+    textArea.value = "";
+    
+}
+
+
+// Comienza funcion Encriptar
 
 function btnEncriptar(){
+
     
     const textoEncriptado = encriptar(textArea.value);
     mensaje.value = textoEncriptado;
@@ -19,25 +30,27 @@ function btnEncriptar(){
         textotres.style.display = "";        
     }
 }
-    
 
 
-function encriptar(stringEncriptada){
-let matrizCodigo = [["e", "enter"],["i", "imes"],["a", "ai"],["o", "ober"],["u", "ufat"]];
-stringEncriptada = stringEncriptada.toLowerCase()
+function encriptar(stringEncriptado) {
+    let matrizCodigo = [["e","enter"],["i","imes"],["a","ai"],["o","ober"],["u","ufat"]];
+    stringEncriptado = stringEncriptado.toLowerCase()
 
-for (let i = 0; i < matrizCodigo.length; i++){
-    if(stringEncriptada.includes(matrizCodigo[i][0])){
-        stringEncriptada = stringEncriptada.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1]);
+
+    for(let i = 0; i < matrizCodigo.length; i++){
+        if(stringEncriptado.includes(matrizCodigo[i][0])){
+            stringEncriptado = stringEncriptado.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1]);
         }
     }
-    return stringEncriptada
+    return stringEncriptado;
 }
+
+// Comienza funcion Desencriptar
 
 function btnDesencriptar(){
 
-    const stringDesencriptado = desencriptar(textArea.value)
-    mensaje.value = stringDesencriptado;
+    const textoDesncriptado = desencriptar(textArea.value);
+    mensaje.value = textoDesncriptado;
     if (mensaje.value != ""){
         textArea.value = "";
         mensaje.style.backgroundImage = "none";
@@ -52,25 +65,25 @@ function btnDesencriptar(){
 }
 
 
-function desencriptar(stringDesencriptada){
-    let matrizCodigo = [["e", "enter"],["i", "imes"],["a", "ai"],["o", "ober"],["u", "ufat"]];
-    stringDesencriptada = stringDesencriptada.toLowerCase()
-    
-    for (let i = 0; i < matrizCodigo.length; i++){
-        if(stringDesencriptada.includes(matrizCodigo[i][1])){
-            stringDesencriptada = stringDesencriptada.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0]);
-            }
-        }
-        return stringDesencriptada
-    }
+function desencriptar(stringDesencriptado) {
+    let matrizCodigo = [["e","enter"],["i","imes"],["a","ai"],["o","ober"],["u","ufat"]];
+    stringDesencriptado = stringDesencriptado.toLowerCase()
 
+
+    for(let i = 0; i < matrizCodigo.length; i++){
+        if(stringDesencriptado.includes(matrizCodigo[i][1])){
+            stringDesencriptado = stringDesencriptado.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0]);
+        }
+    }
+    return stringDesencriptado;
+}
+
+// Comienza la funcion de Copiar
 
 function btnCopiar(){
-   
     const textoCopiado  = document.querySelector(".cuadroDeResultado");
     textoCopiado.focus();
-        
-        navigator.clipboard.writeText(textoCopiado.value);
-     
+
+    navigator.clipboard.writeText(textoCopiado.value);
+
 }
-     
